@@ -33,8 +33,6 @@ async function createRepository(req, res) {
 async function getAllRepository(req, res) {
   try {
     const repositories = await Repository.find({})
-      .populate("owner")
-      .populate("issues");
     res.json(repositories);
   } catch (error) {
     console.error("Error during Fetching all repository : ", error);
@@ -73,14 +71,14 @@ async function fetchRepositoryByName(req, res) {
   }
 }
 async function fetchRepositoryLogedInUser(req, res) {
-  const UserId = req.user;
+  const UserId = req.params.ID;
   try {
     const repository = await Repository.find({ owner: UserId})
     
     if (!repository|| repository.length ==0) {
       res.status(404).json({ message: "No Repo found with this Id" });
     }
-    res.json({"message":repository});
+    res.json({"repositories":repository});
   } catch (error) {
     console.error("Error During fetching repository : ", error);
     res.status(500).send("Internal Server Error! ");

@@ -5,11 +5,7 @@ import { PageHeader, Box, Button } from "@primer/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
  function Login() {
-  useEffect(() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    setCurrentUser(null);
-  });
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setloading] = useState(false);
