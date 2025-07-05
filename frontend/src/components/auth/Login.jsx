@@ -1,90 +1,116 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../authContext";
 import logo from "../../assets/github-mark-white.png";
-import { PageHeader, Box, Button } from "@primer/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
- function Login() {
-  
+import "./auth.css";
+
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { currentUser, setCurrentUser } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      setloading(true);
+      setLoading(true);
       const res = await axios.post("http://localhost:3000/login/", {
         email: email,
         password: password,
-       });
+      });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
       setCurrentUser();
-      setloading(false);
+      setLoading(false);
       window.location.href = "/";
     } catch (error) {
       console.error(error);
-      alert("login failed");
+      alert("Login failed. Please check your credentials.");
     }
   };
 
   return (
-    <div className="login-wrapper">
-      <div className="login-logo-container">
-        <img className="logo-login" src={logo} alt="Logo" />
+    <div className="auth-wrapper">
+      <div className="auth-logo-container">
+        <img className="auth-logo" src={logo} alt="GitHub Logo" />
       </div>
 
-      <div className="login-box-wrapper">
-        <div className="login-heading">
-          <Box sx={{ padding: 1 }}>
-            <PageHeader>
-              <PageHeader.TitleArea variant="large">
-                <PageHeader.Title>Sign In</PageHeader.Title>
-              </PageHeader.TitleArea>
-            </PageHeader>
-          </Box>
+      <div className="auth-container">
+        <div className="auth-header">
+          <h1 className="auth-title">Sign in to GitHub</h1>
         </div>
-        <div className="login-box">
-          <div>
-            <label className="label">Email address</label>
-            <input
-              autoComplete="off"
-              name="Email"
-              id="Email"
-              className="input"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+        
+        <div className="auth-box">
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label className="form-label" htmlFor="email">
+                Email address
+              </label>
+              <input
+                autoComplete="off"
+                name="email"
+                id="email"
+                className="form-input"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <div className="label-container">
+                <label className="form-label" htmlFor="password">
+                  Password
+                </label>
+                <a href="#" className="forgot-password">
+                  Forgot password?
+                </a>
+              </div>
+              <input
+                autoComplete="off"
+                name="password"
+                id="password"
+                className="form-input"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            
+            <button
+              type="submit"
+              className="auth-button"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="spinner"></span>
+              ) : (
+                "Sign in"
+              )}
+            </button>
+          </form>
+          
+          <div className="divider-container">
+            <div className="divider"></div>
+            <span className="divider-text">New to GitHub?</span>
+            <div className="divider"></div>
           </div>
-          <div className="div">
-            <label className="label">Password</label>
-            <input
-              autoComplete="off"
-              name="Password"
-              id="Password"
-              className="input"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <Button
-            variant="primary"
-            className="login-btn"
-            disabled={loading}
-            onClick={handleLogin}
-          >
-            {loading ? "Loading..." : "Login"}
-          </Button>
+          
+          <Link to="/signup" className="create-account-button">
+            Create an account
+          </Link>
         </div>
-        <div className="pass-box">
-          <p>
-            New to GitHub? <Link to="/signup">Create an account</Link>
-          </p>
+        
+        <div className="auth-footer">
+          <ul className="footer-links">
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">Contact GitHub</a></li>
+          </ul>
         </div>
       </div>
     </div>
