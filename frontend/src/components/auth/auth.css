@@ -72,7 +72,7 @@
 }
 
 .form-input {
-  width: 91%;
+  width: 100%;
   padding: 8px 12px;
   background-color: #0d1117;
   border: 1px solid #30363d;
@@ -147,7 +147,7 @@
 
 .create-account-button {
   display: block;
-  width: 91%;
+  width: 100%;
   padding: 8px 16px;
   border: 1px solid #30363d;
   border-radius: 6px;
