@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
-import logo from '../../assets/github-mark-white.png';
+import Navbar from './navbar'
 const Dashboard = () => {
   const [repositories, setRepositories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,12 +47,11 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      <Navbar/>
       {/* Main Content */}
       <div className="main-content">
         <header className="header">
           <div className="header-left">
-            
-            <img id="sitelogo" src={logo} alt="personalgit logo" />
             <button
               className="btn-primary"
               onClick={() => alert("Create repository")}
