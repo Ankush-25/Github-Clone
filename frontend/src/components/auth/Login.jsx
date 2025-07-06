@@ -38,7 +38,7 @@ function Login() {
 
       <div className="auth-container">
         <div className="auth-header">
-          <h1 className="auth-title">Sign in to GitHub</h1>
+          <h1 className="auth-title">Sign in to perso GitHub</h1>
         </div>
         
         <div className="auth-box">
@@ -95,7 +95,7 @@ function Login() {
           
           <div className="divider-container">
             <div className="divider"></div>
-            <span className="divider-text">New to GitHub?</span>
+            <span className="divider-text">New to perso GitHub?</span>
             <div className="divider"></div>
           </div>
           
@@ -109,7 +109,7 @@ function Login() {
             <li><a href="#">Terms</a></li>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Security</a></li>
-            <li><a href="#">Contact GitHub</a></li>
+            <li><a href="#">Contact perso GitHub</a></li>
           </ul>
         </div>
       </div>

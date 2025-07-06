@@ -67,13 +67,7 @@ const Dashboard = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <div className="user-info">
-            <img
-              src="https://avatars.githubusercontent.com/u/1?s=40&v=4"
-              alt="User Avatar"
-              className="avatar"
-            />
-          </div>
+          
         </header>
 
         <div className="content-wrapper">
